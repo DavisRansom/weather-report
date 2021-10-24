@@ -6,7 +6,7 @@ var mainEl = document.querySelector("#main-card");
 var forecast = document.querySelector("#forecast");
 var formEl = document.querySelector("form");
 var cityButtons = [];
-var openWeathApiKey = "d91f911bcf2c0f925fb6535547a5ddc9";
+var openWeatherApiKey = "d91f911bcf2c0f925fb6535547a5ddc9";
 
 function searchAndGenerateWeather(city) {
   //clear the html for new content
@@ -17,7 +17,7 @@ function searchAndGenerateWeather(city) {
     "http://api.openweathermap.org/geo/1.0/direct?q=" +
     city +
     ",US&limit=5&appid=" +
-    openWeathApiKey;
+    openWeatherApiKey;
 
   fetch(geoLocateCityURL)
     .then(function (response) {
@@ -31,7 +31,7 @@ function searchAndGenerateWeather(city) {
         "&lon=" +
         cityInfo.lon +
         "&exclude=minutely,hourly&units=imperial&appid=" +
-        openWeathApiKey;
+        openWeatherApiKey;
 
       fetch(getWeatherUrl)
         .then(function (response) {
@@ -39,7 +39,7 @@ function searchAndGenerateWeather(city) {
         })
         .then(function (weatherData) {
           var cityNameEl = document.createElement("h2");
-          cityNameEl.textContent = city.toUpperCase() + " "+  moment.unix(weatherData.current.sunrise).format("DD/MM/YYYY");
+          cityNameEl.textContent = city.toUpperCase() + " "+  moment.unix(weatherData.current.sunrise).format("MM/DD/YYYY");
           var mainWeatherIcon = document.createElement("img");
           mainWeatherIcon.setAttribute(
             "src",
