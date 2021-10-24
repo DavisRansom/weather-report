@@ -54,27 +54,26 @@ function searchAndGenerateWeather(city) {
           var cityWeatherList = document.createElement("ul");
 
           var temp = document.createElement("li");
-          temp.textContent = "Temp: " + weatherData.current.temp + " F";
+          temp.textContent = "Temperature " + weatherData.current.temp + " F";
           cityWeatherList.append(temp);
 
           var wind = document.createElement("li");
           wind.textContent =
-            "Wind speed: " + weatherData.current.wind_speed + " mph";
+            "Wind Speed " + weatherData.current.wind_speed + " mph";
           cityWeatherList.append(wind);
 
           var humidity = document.createElement("li");
           humidity.textContent =
-            "Humidty: " + weatherData.current.humidity + "%";
+            "Humidity " + weatherData.current.humidity + "%";
           cityWeatherList.append(humidity);
 
           var uvi = document.createElement("li");
-          uvi.textContent = "UV index: " + weatherData.current.uvi;
+          uvi.textContent = "UV Index " + weatherData.current.uvi;
           cityWeatherList.append(uvi);
 
           mainEl.append(cityWeatherList);
 
-          //--------------------------
-          // Forcast Section --------
+          // Forecast Section
           var forecastTitle = document.createElement("h2");
           forecastTitle.textContent = "5-day Forecast";
           forecast.append(forecastTitle);
@@ -82,7 +81,7 @@ function searchAndGenerateWeather(city) {
           for (var i = 0; i < 5; i++) {
             var dayXweather = weatherData.daily[i];
             var dayXweatherCard = document.createElement("ul");
-            dayXweatherCard.style("width","20%")
+            dayXweatherCard.setAttribute("style", "width:20%")
 
             var date = moment.unix(dayXweather.sunrise).format("DD/MM/YYYY");
 
@@ -126,7 +125,7 @@ formEl.addEventListener("click", function (e) {
   makeButtons()
 });
 
-function intialLoad() {
+function initialLoad() {
   var previousCitiesButtons = localStorage.getItem("previousCities");
   if (previousCitiesButtons) {
     cityButtons = JSON.parse(previousCitiesButtons);
@@ -153,4 +152,4 @@ function makeButtons() {
   localStorage.setItem("previousCities", JSON.stringify(cityButtons));
 }
 
-intialLoad()
+initialLoad()
