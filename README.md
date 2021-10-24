@@ -1,8 +1,9 @@
-# weather-report
-This weather report allows a user to find out the weather in many different cities.
+Weather Report
+
+This weather report application allows a user to find out the weather in many different cities.
 
 Description
-This application uses openweather.com's API to discover and display on the screen the 5-day forecast for a city of the user's choice.
+This application uses openweather.com's API to discover and display on the screen the 5-day forecast for nearly any United States city of the user's choice.
 
 Step-by-step bullets
 1. Type the city about which you would like to discover the five-day forecast into the input field.
@@ -13,7 +14,8 @@ Author's Name
 Davis Ransom
 
 Contact info
-davis.ransom.tech@gmail.com
+davis.ransom.tech@gmail.com 
+https://github.com/DavisRansom
 
 This is the Initial Release of this program 
 It was released on October 23rd of 2021
