@@ -13,8 +13,9 @@ Step-by-step bullets
 Author's Name 
 Davis Ransom
 
-Contact info
+Contact Information
 davis.ransom.tech@gmail.com 
+<br>
 https://github.com/DavisRansom
 
 This is the Initial Release of this program 
