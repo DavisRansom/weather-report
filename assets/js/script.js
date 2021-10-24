@@ -1,4 +1,4 @@
-//variables
+//Global Variables to grab for easy access later
 var inputEl = document.querySelector("input[name=city");
 var submitBtn = document.querySelector("#searchbtn");
 var priorSearches = document.querySelector("#prior-searches");
@@ -33,12 +33,13 @@ function searchAndGenerateWeather(city) {
                 "&exclude=minutely,hourly&units=imperial&appid=" +
                 openWeatherApiKey;
 
+            //Fetching the weather data from openweather API
             fetch(getWeatherUrl)
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (weatherData) {
-                    var cityNameEl = document.createElement("h2");
+                    var cityNameEl = document.createElement("h3");
                     cityNameEl.textContent = city.toUpperCase() + " " + moment.unix(weatherData.current.sunrise).format("MM/DD/YYYY");
                     var mainWeatherIcon = document.createElement("img");
                     mainWeatherIcon.setAttribute(
@@ -52,7 +53,7 @@ function searchAndGenerateWeather(city) {
                     mainEl.append(cityNameEl);
 
                     var cityWeatherList = document.createElement("ul");
-
+                    //The items that will appear on the weather card
                     var temp = document.createElement("li");
                     temp.textContent = "Temperature " + weatherData.current.temp + " F";
                     cityWeatherList.append(temp);
@@ -78,15 +79,16 @@ function searchAndGenerateWeather(city) {
                     forecastTitle.textContent = "5-Day Forecast";
                     forecast.append(forecastTitle);
 
+                    //For loop to pull out of the API until we have 5 results
                     for (var i = 0; i < 5; i++) {
                         var dailyWeather = weatherData.daily[i];
                         var dailyWeatherCard = document.createElement("ul");
                         dailyWeatherCard.setAttribute("style", "width:20%")
-                //use Moment to find today's date and format it
+                        //use Moment to find today's date and format it
                         var date = moment.unix(dailyWeather.sunrise).format("DD/MM/YYYY");
 
                         dailyWeatherCard.append(date);
-                //create a variable for the weather icon image, call it in the API, then put it on the page
+                        //create a variable for the weather icon image, call it in the API, then put it on the page
                         var weatherIcon = document.createElement("img");
                         weatherIcon.setAttribute(
                             "src",
@@ -94,8 +96,9 @@ function searchAndGenerateWeather(city) {
                             dailyWeather.weather[0].icon +
                             ".png"
                         );
+                        //Write all of the data to the screen
                         dailyWeatherCard.append(weatherIcon);
-
+            
                         var temp = document.createElement("li");
                         temp.textContent = "Temperature " + dailyWeather.temp.day + " F";
                         dailyWeatherCard.append(temp);
@@ -113,6 +116,8 @@ function searchAndGenerateWeather(city) {
                 });
         });
 }
+
+//Event Listener for the search form
 formEl.addEventListener("click", function (e) {
     e.preventDefault();
     var searchValue = inputEl.value.trim();
@@ -134,7 +139,7 @@ function initialLoad() {
     }
 }
 
-function makeButtons() {
+function makeResultsButtons() {
     for (var i = 0; i < cityButtons.length; i++) {
         const city = cityButtons[i];
         var newBtn = document.createElement("button");
@@ -151,7 +156,5 @@ function makeButtons() {
 
     localStorage.setItem("priorSearches", JSON.stringify(cityButtons));
 }
-
-makeButtons ()
 
 initialLoad()
