@@ -14,7 +14,7 @@ function searchAndGenerateWeather(city) {
     forecast.innerHTML = "";
     //set the variable that will openweather API to generate the url of the city's weather forecast
     var geoLocateCityURL =
-        "http://api.openweathermap.org/geo/1.0/direct?q=" +
+        "https://api.openweathermap.org/geo/1.0/direct?q=" +
         city +
         ",US&limit=5&appid=" +
         openWeatherApiKey;
