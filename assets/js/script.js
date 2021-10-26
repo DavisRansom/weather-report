@@ -125,21 +125,25 @@ formEl.addEventListener("click", function (e) {
     if (!searchValue) {
         return;
     }
-
-    cityButtons.push(searchValue)
+    if (!cityButtons.includes(searchValue)){
+        cityButtons.unshift(searchValue);
+        cityButtons = cityButtons.slice(0,5);
+    }
+    
     searchAndGenerateWeather(searchValue);
-    makeButtons()
+    makeResultsButtons()
 });
 
 function initialLoad() {
     var priorSearchesButtons = localStorage.getItem("previousCities");
     if (priorSearchesButtons) {
         cityButtons = JSON.parse(priorSearchesButtons);
-        makeButtons();
+        makeResultsButtons();
     }
 }
 
 function makeResultsButtons() {
+    priorSearches.innerHTML ="";
     for (var i = 0; i < cityButtons.length; i++) {
         const city = cityButtons[i];
         var newBtn = document.createElement("button");
